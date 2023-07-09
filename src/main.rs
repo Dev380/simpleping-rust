@@ -112,7 +112,7 @@ fn main() {
         (*addr).sll_protocol = (libc::ETH_P_IP as u16).to_be();
         (*addr).sll_addr = mac_array;
         (*addr).sll_halen = 6;
-        (*addr).sll_ifindex = 3;
+        (*addr).sll_ifindex = iface.index as i32;
         let saddr = &storage as *const sockaddr_storage as *const libc::sockaddr;
         LinkAddr::from_raw(saddr as *const sockaddr, None).unwrap()
     };
